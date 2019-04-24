@@ -1,0 +1,8 @@
+node_modules/
+buid/
+tsconfig.json
+package-lock.json
+package.json
+build/
+questGod_modules/
+Events_QuestGod/
