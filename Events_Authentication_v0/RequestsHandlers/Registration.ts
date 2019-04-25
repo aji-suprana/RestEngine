@@ -12,11 +12,21 @@ import {IsRequestValid} from "../../Engine/ErrorHandler/ErrorHandler"
 export function Registration(req:Request,res:Response,next:NextFunction) {
     const responseHelper = new ResponseHelper("Registration",res,req);
 
-    const requestValid = IsRequestValid(responseHelper,req,"email","password");
+    var requestValid = IsRequestValid(responseHelper,req,"email","password","userType");
    
     if(!requestValid)
         return;
-        
+
+    //if registering as partner
+    // if(req.body.userType === "Partner")
+    // {
+    //     requestValid = IsRequestValid(responseHelper,req,"email","password","userType","partnerKey");
+   
+    //     if(!requestValid)
+    //         return;
+    
+    // }
+
     responseHelper.JsonRequest_Succeded()
 
     User.find({"email":req.body.email})
@@ -37,6 +47,8 @@ export function Registration(req:Request,res:Response,next:NextFunction) {
             );
         }
 
+
+
         //Encrypting input password
         bcrypt.hash(req.body.password,10,
             (err:any,hash:string)=>{
@@ -46,7 +58,7 @@ export function Registration(req:Request,res:Response,next:NextFunction) {
                     _id: new mongoose.Types.ObjectId,
                     email: req.body.email,
                     password: hash,
-                    userType: "User"
+                    userType: req.body.userType
                 })
         
                 userModel.save()
