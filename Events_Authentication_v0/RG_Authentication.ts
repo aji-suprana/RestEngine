@@ -35,7 +35,7 @@ export class RG_Authentication extends RequestGroup
         this.RegisterRGChildMethod(HTTPMethodType.post,"authentication",Authenticate);
         this.RegisterRGChildMethod(HTTPMethodType.post,"registration",Registration);
         this.RegisterRGChildMethod(HTTPMethodType.post,"adminregistration",AdminRegistration);
-        this.RegisterRGChildMethod(HTTPMethodType.post,"adminauthenticate",AdminAuthenticate);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"adminauthentication",AdminAuthenticate);
 
     }
     
@@ -45,7 +45,7 @@ export class RG_Authentication extends RequestGroup
         RG_Authentication.getInstance().RegisterRequestHandler('Authentication',Authenticate);
         RG_Authentication.getInstance().RegisterRequestHandler('Registration',Registration);
         RG_Authentication.getInstance().RegisterRequestHandler('AdminRegistration',AdminRegistration);
-        RG_Authentication.getInstance().RegisterRequestHandler('AdminAuthenticate',AdminAuthenticate);
+        RG_Authentication.getInstance().RegisterRequestHandler('AdminAuthentication',AdminAuthenticate);
     }
 
     RequestHandler(req:Request,res:Response,next:NextFunction) : any
