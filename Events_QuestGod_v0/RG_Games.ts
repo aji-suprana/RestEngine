@@ -16,7 +16,7 @@ export class RG_Games extends RequestGroup
     getInstance()
     {
         if(!RG_Games.instance){
-            RG_Games.instance = new RG_Games("games");
+            RG_Games.instance = new RG_Games("games",0);
         }
 
         return RG_Games.instance;

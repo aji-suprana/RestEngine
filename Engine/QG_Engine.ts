@@ -8,7 +8,7 @@ export class QG_Engine{
     _rg :Array<RequestGroup> = [];
 
     app:core.Application = express();
-    errorHandler: ErrorHandler = new ErrorHandler("ErrorHandler");
+    errorHandler: ErrorHandler = new ErrorHandler("ErrorHandler",0);
 
     constructor()
     {

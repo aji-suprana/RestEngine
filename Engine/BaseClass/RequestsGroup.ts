@@ -24,9 +24,9 @@ class RequestGroup{
     middlewares:core.RequestHandler[] = [];
     eventHandler:RequestGroupHandler = { }
 
-    constructor(_requestGroupName:string){
+    constructor(_requestGroupName:string,_requestGroupVersion:number){
         this.requestGroupName =_requestGroupName;
-        this.requestGroupPath = "/"+ _requestGroupName;
+        this.requestGroupPath = "/restapi_"+_requestGroupVersion.toString()+"/"+ _requestGroupName;
         //QG_Engine.RegisterRequestGroup(this);
     }
 

@@ -4,11 +4,11 @@ const engine = new QG_Engine();
 const http = require('http');
 
 
-import {RG_Authentication as Authentication} from './Events_Authentication_v0/RG_Authentication';
-import {RG_Games as Games} from './Events_QuestGod_v0/RG_Games';
+import {RG_Authentication as Authentication_v0} from './Events_Authentication_v0/RG_Authentication';
+import {RG_Games as Games_v0} from './Events_QuestGod_v0/RG_Games';
 
-engine.RegisterRequestGroup(new Authentication("auth"));
-engine.RegisterRequestGroup(new Games("games"));
+engine.RegisterRequestGroup(new Authentication_v0("auth",0));
+engine.RegisterRequestGroup(new Games_v0("games",0));
 
 engine.Initialize();
 

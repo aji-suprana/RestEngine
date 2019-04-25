@@ -22,7 +22,7 @@ export class RG_Authentication extends RequestGroup
     static getInstance()
     {
         if(!RG_Authentication.instance){
-            RG_Authentication.instance = new RG_Authentication("auth");
+            RG_Authentication.instance = new RG_Authentication("auth",0);
         }
 
         return RG_Authentication.instance;
