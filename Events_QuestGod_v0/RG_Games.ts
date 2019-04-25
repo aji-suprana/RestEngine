@@ -1,8 +1,8 @@
 //const RequestGroup = require('../Utilities/RequestsGroup')
 //const HTTPMethodType = require('../Utilities/HTTPMethodType').HTTPMethodType;
 
-import {HTTPMethodType} from '../Engine_v0/index'
-import {RequestGroup} from'../Engine_v0/BaseClass/RequestsGroup'
+import {HTTPMethodType} from '../Engine/index'
+import {RequestGroup} from'../Engine/BaseClass/RequestsGroup'
 
 import {checkAuth} from '../Events_Authentication_v0/check-auth'
 //Requests
