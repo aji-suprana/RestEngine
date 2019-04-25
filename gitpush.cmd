@@ -1,19 +1,15 @@
 @echo off
 set /p msg="Enter Commit Message: "
 
-cd Engine
-
 git add -A
 git commit -m"%msg%"
+git pull
 git push
 cd .. 
 
-cd Events_Authentication
+cd bin
 git add -A
 git commit -m"%msg%"
+git pull
 git push
 
-cd ..
-git add -A
-git commit -m"%msg%"
-git push
