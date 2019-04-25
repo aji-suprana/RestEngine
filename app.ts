@@ -7,7 +7,7 @@ const http = require('http');
 import {RG_Authentication as Authentication} from './Events_Authentication/RG_Authentication';
 import {RG_Games as Games} from './Events_QuestGod/RG_Games';
 
-engine.RegisterRequestGroup(new Authentication("authentication"));
+engine.RegisterRequestGroup(new Authentication("auth"));
 engine.RegisterRequestGroup(new Games("games"));
 
 engine.Initialize();

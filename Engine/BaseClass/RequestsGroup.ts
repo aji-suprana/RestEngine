@@ -15,8 +15,6 @@ export interface RequestGroupHandler {
     [key: string]: core.RequestHandler
 }
 
-function test123(req: Request, res: Response, next: NextFunction):any{return null;}
-
 class RequestGroup{
     
     expressApp:expressTS.Application = express();
@@ -80,8 +78,8 @@ class RequestGroup{
     {
         this.expressApp.use(this.requestGroupPath,router);
 
-        this.middlewares.push(this.RequestHandler);
-        this.expressApp.post(this.requestGroupPath,this.middlewares);
+        this.expressApp.post(this.requestGroupPath,this.middlewares,this.RequestHandler);
+        this.expressApp.post(this.requestGroupPath,this.middlewares,this.RequestHandler);
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Registering Request handler with no child paths

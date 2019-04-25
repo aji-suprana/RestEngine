@@ -22,7 +22,7 @@ export class RG_Authentication extends RequestGroup
     static getInstance()
     {
         if(!RG_Authentication.instance){
-            RG_Authentication.instance = new RG_Authentication("authentication");
+            RG_Authentication.instance = new RG_Authentication("auth");
         }
 
         return RG_Authentication.instance;
@@ -31,28 +31,37 @@ export class RG_Authentication extends RequestGroup
     RegisterChildMethods()
     {
         console.log("Registering Child Methods in " + this.requestGroupPath)
-        //this.RegisterRGChildMethod(HTTPMethodType.post,"registration",Registration);
-        //this.RegisterRGChildMethod(HTTPMethodType.post,"authenticate",Authenticate);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"registration",Registration);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"authentication",Authenticate);
     }
-
-    RequestHandler(req:Request,res:Response,next:NextFunction) : any
-    {
-        var responseHelper = new ResponseHelper(req.body.eventKey,res,req);
-
-        if(req.body.eventKey == undefined){
-            responseHelper.HTTP_UnprocessableEntity({message: "request.eventKey property not found!"});
-        }
-
-        const eventKey:string = req.body.eventKey;
-        return  RG_Authentication.getInstance().eventHandler[eventKey](req,res,next);
-    }
-
+    
     RegisterRequestHandlers()
     {
         console.log("Registering Events in " + this.requestGroupPath)
         RG_Authentication.getInstance().RegisterRequestHandler('Authenticate',Authenticate);
         RG_Authentication.getInstance().RegisterRequestHandler('Registration',Registration);
     }
+
+    RequestHandler(req:Request,res:Response,next:NextFunction) : any
+    {
+        var responseHelper = new ResponseHelper(req.body.eventKey,res,req);
+        const eventKey:string = req.body.eventKey;
+
+        if(Object.keys(req.body).length == 0){
+            throw "post request has no body"
+        }
+        
+        if(req.body.eventKey == undefined){
+            return responseHelper.HTTP_UnprocessableEntity({message: "request.eventKey property not found!"});
+        }
+
+        if(typeof( RG_Authentication.getInstance().eventHandler[eventKey]) === "undefined"){
+            return responseHelper.HTTP_UnprocessableEntity({message: "invalid request.eventKey!"});
+        }
+
+        return  RG_Authentication.getInstance().eventHandler[eventKey](req,res,next);
+    }
+
 
     RegisterMiddlewares(){}
 }

@@ -32,10 +32,11 @@ export class ErrorHandler extends RequestGroup{
             let error:any;
             error = new Error('Not found');
             error.status = 404;
+
             next(error);
         })
 
-        this.expressApp.use((error:any, req:Request, res:Response, next:NextFunction) => {
+        this.expressApp.use((error:any, req:Request, res:Response, next:NextFunction) => {            
             res.status(error.status || 500);
             res.json({
                 error: {
