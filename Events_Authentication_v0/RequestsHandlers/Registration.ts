@@ -12,10 +12,11 @@ import {IsRequestValid} from "../../Engine/ErrorHandler/ErrorHandler"
 export function Registration(req:Request,res:Response,next:NextFunction) {
     const responseHelper = new ResponseHelper("Registration",res,req);
 
-    if(!IsRequestValid(req)){
+    const requestValid = IsRequestValid(responseHelper,req,"email","password");
+   
+    if(!requestValid)
+        return;
         
-    }
-
     responseHelper.JsonRequest_Succeded()
 
     User.find({"email":req.body.email})

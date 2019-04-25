@@ -9,13 +9,13 @@ import {NextFunction} from "express-serve-static-core";
 import {ResponseHelper} from "../../Engine/index"
 import {IsRequestValid} from "../../Engine/ErrorHandler/ErrorHandler"
 
-import User, { IUser } from '../Models/user';
+import AdminUser, { IAdminUser } from '../Models/adminUser';
 
 //jsonwebtoken
 import  * as jwt from 'jsonwebtoken'
 
 
-export function Authenticate(req:Request,res:Response,next:NextFunction) {
+export function AdminAuthenticate(req:Request,res:Response,next:NextFunction) {
     const responseHelper = new ResponseHelper("Authenticate",res,req);
     const requestValid = IsRequestValid(responseHelper,req,"email","password");
    
@@ -24,9 +24,9 @@ export function Authenticate(req:Request,res:Response,next:NextFunction) {
 
     responseHelper.JsonRequest_Succeded()
 
-    User.find({email: req.body.email})
+    AdminUser.find({email: req.body.email})
     .exec()
-    .then(function(user:IUser[]){
+    .then(function(user:IAdminUser[]){
         if(!UserFound(user)){
             return responseHelper.HTTP_Unauthorized("Authentication failed!");
         }
@@ -38,7 +38,6 @@ export function Authenticate(req:Request,res:Response,next:NextFunction) {
                 const jwtToken = jwt.sign({
                     email: user[0].email,
                     userId: user[0]._id,
-                    userType: user[0].userType
                 },
                 (String)(process.env.JWT_KEY),
                 {
@@ -60,7 +59,7 @@ export function Authenticate(req:Request,res:Response,next:NextFunction) {
  } 
 
 
- function UserFound(user:IUser[]) : boolean{
+ function UserFound(user:IAdminUser[]) : boolean{
     if(user.length >= 1){return true;}
     else{ return false;}
  }

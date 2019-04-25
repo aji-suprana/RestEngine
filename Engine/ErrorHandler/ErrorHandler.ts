@@ -3,20 +3,39 @@ import express = require('express');
 import {Response} from "express-serve-static-core";
 import {Request} from "express-serve-static-core";
 import {NextFunction} from "express-serve-static-core";
+import {ResponseHelper} from "../../Engine/index"
 
 import {RequestGroup} from "../index"
 
-export function IsRequestValid(req:Request,...requiredProperties:String[]) 
+
+export function IsRequestValid(responseHelper:ResponseHelper,req:Request,...requiredProperties:String[]) 
 {
+    var missingProperties:String[] = []
+
     requiredProperties.forEach(function(value:String,index:number){
         var reqBody = req.body;
+
         if(!reqBody.hasOwnProperty(value))
         {
-            return false
+            missingProperties.push(value);
         }
     })
 
-    return true;
+    if(missingProperties.length == 0)
+    {
+        return true;
+    }
+    else
+    {
+        responseHelper.HTTP_UnprocessableEntity(
+            {
+                message : "invalid request body",
+                details : "[" + missingProperties + "] is required!",
+            }
+        );
+        return false;
+
+    }
 }
 
 export class ErrorHandler extends RequestGroup{

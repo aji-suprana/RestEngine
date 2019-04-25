@@ -6,18 +6,25 @@ import {Request} from "express-serve-static-core";
 import {NextFunction} from "express-serve-static-core";
 
 import {ResponseHelper} from "../../Engine/index"
-import User, { IUser } from '../Models/user';
+import {IsRequestValid} from "../../Engine/ErrorHandler/ErrorHandler"
+
+import AdminUser from '../Models/adminUser';
 
 
 
-export function RegisterAdmin(req:Request,res:Response,next:NextFunction) {
-    const responseHelper = new ResponseHelper("Registration",res,req);
+export function AdminRegistration(req:Request,res:Response,next:NextFunction) {
+    const responseHelper = new ResponseHelper("AdminRegistration",res,req);
+    const requestValid = IsRequestValid(responseHelper,req,"email","password","adminKey");
+   
+    if(!requestValid)
+        return;
+
     responseHelper.JsonRequest_Succeded()
 
     bcrypt.compare(req.body.adminKey,process.env.ADMIN_KEY,function(err:Error,result:boolean){
         var tempBool = CheckIfPasswordIsCorrect(err,result);
         if(tempBool){
-            User.find({"email":req.body.email})
+            AdminUser.find({"email":req.body.email})
             .exec()
             .then(function(user:any){
                 //if mail existed
@@ -40,11 +47,11 @@ export function RegisterAdmin(req:Request,res:Response,next:NextFunction) {
                     (err:any,hash:string)=>{
                         if(err){return responseHelper.HTTP_UnprocessableEntity(err);}
         
-                        const userModel = new User({
+                        const userModel = new AdminUser({
                             _id: new mongoose.Types.ObjectId,
                             email: req.body.email,
                             password: hash,
-                            userType: req.body.userType
+                            userType: "Admin"
                         })
                 
                         userModel.save()
@@ -58,6 +65,8 @@ export function RegisterAdmin(req:Request,res:Response,next:NextFunction) {
                 );
             })
             .catch(function(err:any){responseHelper.HTTP_InternalServerError(err);})
+        }else{
+            return responseHelper.HTTP_Unauthorized("Auth key invalid!");
         }
     })
  } 

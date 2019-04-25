@@ -6,14 +6,15 @@ import {RequestGroup} from'../Engine/BaseClass/RequestsGroup'
 
 //Requests
 import {Registration} from "./RequestsHandlers/Registration"
+import {AdminRegistration} from "./RequestsHandlers/AdminRegistration"
 import {Authenticate} from "./RequestsHandlers/Authenticate"
+import {AdminAuthenticate} from "./RequestsHandlers/AdminAuthenticate"
 
 import {Response} from "express-serve-static-core";
 import {Request} from "express-serve-static-core";
 import {NextFunction} from "express-serve-static-core";
 
 import {ResponseHelper} from "../Engine/Utilities/ResponseHelper"
-import {checkAuth} from'./Middleware/check-auth'
 
 export class RG_Authentication extends RequestGroup
 {
@@ -31,15 +32,20 @@ export class RG_Authentication extends RequestGroup
     RegisterChildMethods()
     {
         console.log("REGISTERING CHILD METHOD IN " + this.requestGroupPath)
-        this.RegisterRGChildMethod(HTTPMethodType.post,"registration",Registration);
         this.RegisterRGChildMethod(HTTPMethodType.post,"authentication",Authenticate);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"registration",Registration);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"adminregistration",AdminRegistration);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"adminauthenticate",AdminAuthenticate);
+
     }
     
     RegisterRequestHandlers()
     {
         console.log("REGISTERING EVENTS IN " + this.requestGroupPath)
-        RG_Authentication.getInstance().RegisterRequestHandler('Authenticate',Authenticate);
+        RG_Authentication.getInstance().RegisterRequestHandler('Authentication',Authenticate);
         RG_Authentication.getInstance().RegisterRequestHandler('Registration',Registration);
+        RG_Authentication.getInstance().RegisterRequestHandler('AdminRegistration',AdminRegistration);
+        RG_Authentication.getInstance().RegisterRequestHandler('AdminAuthenticate',AdminAuthenticate);
     }
 
     RequestHandler(req:Request,res:Response,next:NextFunction) : any
