@@ -1,10 +1,10 @@
-import {QG_Engine} from "./Engine/QG_Engine";
+import {QG_Engine} from "./Engine_v0/QG_Engine";
 const engine = new QG_Engine();
 
 const http = require('http');
 
 
-import {RG_Authentication as Authentication} from './Events_Authentication/RG_Authentication';
+import {RG_Authentication as Authentication} from './Events_Authentication_v0/RG_Authentication';
 import {RG_Games as Games} from './Events_QuestGod/RG_Games';
 
 engine.RegisterRequestGroup(new Authentication("auth"));

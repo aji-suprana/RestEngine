@@ -1,19 +1,19 @@
 //const RequestGroup = require('../Utilities/RequestsGroup')
 //const HTTPMethodType = require('../Utilities/HTTPMethodType').HTTPMethodType;
 
-import {HTTPMethodType} from '../Engine/Utilities/HTTPMethodType'
-import {RequestGroup} from'../Engine/BaseClass/RequestsGroup'
+import {HTTPMethodType} from '../Engine_v0/Utilities/HTTPMethodType'
+import {RequestGroup} from'../Engine_v0/BaseClass/RequestsGroup'
 
 //Requests
-import {Registration} from "./Registration"
-import {Authenticate} from "./Authenticate"
+import {Registration} from "./RequestsHandlers/Registration"
+import {Authenticate} from "./RequestsHandlers/Authenticate"
 
 import {Response} from "express-serve-static-core";
 import {Request} from "express-serve-static-core";
 import {NextFunction} from "express-serve-static-core";
 
-import {ResponseHelper} from "../Engine/Utilities/ResponseHelper"
-import {checkAuth} from'../Events_Authentication/check-auth'
+import {ResponseHelper} from "../Engine_v0/Utilities/ResponseHelper"
+import {checkAuth} from'./check-auth'
 
 export class RG_Authentication extends RequestGroup
 {
@@ -30,14 +30,14 @@ export class RG_Authentication extends RequestGroup
 
     RegisterChildMethods()
     {
-        console.log("Registering Child Methods in " + this.requestGroupPath)
+        console.log("REGISTERING CHILD METHOD IN " + this.requestGroupPath)
         this.RegisterRGChildMethod(HTTPMethodType.post,"registration",Registration);
         this.RegisterRGChildMethod(HTTPMethodType.post,"authentication",Authenticate);
     }
     
     RegisterRequestHandlers()
     {
-        console.log("Registering Events in " + this.requestGroupPath)
+        console.log("REGISTERING EVENTS IN " + this.requestGroupPath)
         RG_Authentication.getInstance().RegisterRequestHandler('Authenticate',Authenticate);
         RG_Authentication.getInstance().RegisterRequestHandler('Registration',Registration);
     }

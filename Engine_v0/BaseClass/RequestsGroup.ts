@@ -35,7 +35,7 @@ class RequestGroup{
         if(this.isInitialized === true){return}
         this.isInitialized = true;
         console.log("");
-        console.log("RequestGroup["+this.requestGroupName+"] is Initializing.....")
+        console.log("INITIALIZING: RequestGroup["+this.requestGroupName+"]  .....")
         this.expressApp = expressApp;
         this.RegisterChildMethods();
         this.RegisterMiddlewares();
@@ -91,7 +91,7 @@ class RequestGroup{
 
     RegisterRequestHandler(key:string,handler:core.RequestHandler)
     {
-        console.log("registering eventKey: <" + key + ">, function: ");
+        console.log("registering");
         this.eventHandler[key] = handler;
         console.log(this.eventHandler[key]);
         //Object.entries(this.requestHandlers).push([key,handler]);
