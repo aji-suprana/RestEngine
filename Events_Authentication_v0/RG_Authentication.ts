@@ -13,7 +13,7 @@ import {Request} from "express-serve-static-core";
 import {NextFunction} from "express-serve-static-core";
 
 import {ResponseHelper} from "../Engine/Utilities/ResponseHelper"
-import {checkAuth} from'./check-auth'
+import {checkAuth} from'./Middleware/check-auth'
 
 export class RG_Authentication extends RequestGroup
 {

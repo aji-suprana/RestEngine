@@ -38,8 +38,8 @@ class RequestGroup{
         console.log("INITIALIZING: RequestGroup["+this.requestGroupName+"]  .....")
         this.expressApp = expressApp;
         this.RegisterChildMethods();
-        this.RegisterMiddlewares();
-        this.RegisterRequestHandlers();
+        //this.RegisterMiddlewares();
+        //this.RegisterRequestHandlers();
 
         //assign requestGroupPath to routers & handlers
         this.RoutesHandler();

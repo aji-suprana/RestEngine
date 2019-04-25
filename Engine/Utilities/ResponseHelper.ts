@@ -73,7 +73,6 @@ export class ResponseHelper{
             error: err
         };
         console.log(jsonObj);
-        console.log("");
         return jsonObj;
     }
 
@@ -92,17 +91,20 @@ export class ResponseHelper{
 
     HTTP_Unauthorized(err:any)
     {
-        return this.responseBody.status(401).json(this.JsonResponse_Failed(err));
+        const jsonResult = this.JsonResponse_Failed(err);
+        return this.responseBody.status(401).json(jsonResult);
     }
 
     HTTP_UnprocessableEntity(err:any)
     {
-        return this.responseBody.status(422).json(this.JsonResponse_Failed(err));
+        const jsonResult = this.JsonResponse_Failed(err);
+        return this.responseBody.status(422).json(jsonResult);
     }
 
     HTTP_InternalServerError(err:any)
     {
-        return this.responseBody.status(500).json(this.JsonResponse_Failed(err));
+        const jsonResult = this.JsonResponse_Failed(err);
+        return this.responseBody.status(500).json(jsonResult);
     }
 }
 

@@ -4,7 +4,7 @@
 import {HTTPMethodType} from '../Engine/index'
 import {RequestGroup} from'../Engine/BaseClass/RequestsGroup'
 
-import {checkAuth} from '../Events_Authentication_v0/check-auth'
+import {checkAuth} from '../Events_Authentication_v0/Middleware/check-auth'
 //Requests
 import {CreateGame} from "./CreateGame"
 //import {Authenticate} from "./Authenticate"

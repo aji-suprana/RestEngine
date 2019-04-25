@@ -7,9 +7,15 @@ import {NextFunction} from "express-serve-static-core";
 
 import {ResponseHelper} from "../../Engine/index"
 import User, { IUser } from '../Models/user';
+import {IsRequestValid} from "../../Engine/ErrorHandler/ErrorHandler"
 
 export function Registration(req:Request,res:Response,next:NextFunction) {
     const responseHelper = new ResponseHelper("Registration",res,req);
+
+    if(!IsRequestValid(req)){
+        
+    }
+
     responseHelper.JsonRequest_Succeded()
 
     User.find({"email":req.body.email})

@@ -6,6 +6,18 @@ import {NextFunction} from "express-serve-static-core";
 
 import {RequestGroup} from "../index"
 
+export function IsRequestValid(req:Request,...requiredProperties:String[]) 
+{
+    requiredProperties.forEach(function(value:String,index:number){
+        var reqBody = req.body;
+        if(!reqBody.hasOwnProperty(value))
+        {
+            return false
+        }
+    })
+
+    return true;
+}
 
 export class ErrorHandler extends RequestGroup{
     RegisterChildMethods(){}
@@ -32,11 +44,12 @@ export class ErrorHandler extends RequestGroup{
             let error:any;
             error = new Error('Not found');
             error.status = 404;
-
+                
             next(error);
         })
 
-        this.expressApp.use((error:any, req:Request, res:Response, next:NextFunction) => {            
+        this.expressApp.use((error:any, req:Request, res:Response, next:NextFunction) => {        
+             
             res.status(error.status || 500);
             res.json({
                 error: {
