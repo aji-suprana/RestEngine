@@ -14,7 +14,6 @@ import User, { IUser } from '../Models/user';
 //jsonwebtoken
 import  * as jwt from 'jsonwebtoken'
 
-
 export function Authenticate(req:Request,res:Response,next:NextFunction) {
     const responseHelper = new ResponseHelper("Authenticate",res,req);
     const requestValid = IsRequestValid(responseHelper,req,"email","password");
