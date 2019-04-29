@@ -45,7 +45,6 @@ export function CreateGame(req:Request,res:Response,next:NextFunction) {
             .catch(function(err:any){
                 responseHelper.HTTP_InternalServerError(err);
             })
-
         })
     }else{
         return responseHelper.HTTP_Unauthorized("invalid access!Parner account is required");
