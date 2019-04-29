@@ -6,26 +6,26 @@ import {RequestGroup} from'../Engine/BaseClass/RequestsGroup'
 
 import {checkAuth} from '../Events_Authentication_v0/Middleware/check-auth'
 //Requests
-import {CreateGame} from "./RequestHandler/CreateGame"
+import {CreateGame} from "./RequestHandler/CreateProduct"
 //import {Authenticate} from "./Authenticate"
 
-export class RG_Games extends RequestGroup
+export class RG_Products extends RequestGroup
 {
-    private static instance:RG_Games;
+    private static instance:RG_Products;
 
     getInstance()
     {
-        if(!RG_Games.instance){
-            RG_Games.instance = new RG_Games("games",0);
+        if(!RG_Products.instance){
+            RG_Products.instance = new RG_Products("products",0);
         }
 
-        return RG_Games.instance;
+        return RG_Products.instance;
     }
 
     RegisterChildMethods()
     {
         console.log("Registering Child Methods in " + this.requestGroupPath)
-        this.RegisterRGChildMethod(HTTPMethodType.post,"creategame",checkAuth,CreateGame);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"",checkAuth,CreateGame);
         //this.RegisterRGChildMethod(HTTPMethodType.post,"authenticate",Authenticate);
     }
 

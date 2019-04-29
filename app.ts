@@ -1,14 +1,17 @@
 import {QG_Engine} from "./Engine/QG_Engine";
+
+
+
 const engine = new QG_Engine();
 
 const http = require('http');
 
 
 import {RG_Authentication as Authentication_v0} from './Events_Authentication_v0/RG_Authentication';
-import {RG_Games as Games_v0} from './Events_QuestGod_v0/RG_Games';
+import {RG_Products as Products_v0} from "./Events_QuestGod_v0/RG_Products";
 
 engine.RegisterRequestGroup(new Authentication_v0("auth",0));
-engine.RegisterRequestGroup(new Games_v0("games",0));
+engine.RegisterRequestGroup(new Products_v0("products",0));
 
 engine.Initialize();
 
@@ -30,6 +33,7 @@ mongoose.connect(
     });
 
 //mongodb+srv://quest_god:<password>@questgod-ftvdm.mongodb.net/test?retryWrites=true
+
 
 const port = process.env.PORT || 8080;
 const server = http.createServer(engine.app);
