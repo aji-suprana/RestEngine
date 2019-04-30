@@ -9,7 +9,7 @@ export interface IProduct extends Document{
 
 let productSchema = new Schema({
   _id:mongoose.Schema.Types.ObjectId,
-  owner: {type:mongoose.Types.ObjectId,required:true},
+  owner: {type:mongoose.Types.ObjectId,required:true,index:true},
   name: {type:String,required:true},
   productType:{type:String,required:true}
 });
