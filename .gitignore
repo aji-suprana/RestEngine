@@ -7,4 +7,5 @@ build/
 questGod_modules/
 Events_QuestGod_v0/
 Events_QuestGod_v0/**
+Events_QuestGod_v0/*/*
 gitpush.cmd
