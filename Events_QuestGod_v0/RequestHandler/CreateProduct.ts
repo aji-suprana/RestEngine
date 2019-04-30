@@ -10,7 +10,7 @@ import {ResponseHelper} from "../../Engine/index"
 import Product,{IProduct} from '../Models/product';
 import ProductContainer, {IProductContainer} from '../Models/productContainer';
 
-export function CreateGame(req:Request,res:Response,next:NextFunction) {
+export function CreateProduct(req:Request,res:Response,next:NextFunction) {
     const responseHelper = new ResponseHelper("CreateGame",res,req);
     responseHelper.JsonRequest_Succeded();
 

@@ -6,7 +6,9 @@ import {RequestGroup} from'../Engine/BaseClass/RequestsGroup'
 
 import {checkAuth} from '../Events_Authentication_v0/Middleware/check-auth'
 //Requests
-import {CreateGame} from "./RequestHandler/CreateProduct"
+import {CreateProduct} from "./RequestHandler/CreateProduct"
+import {DeleteProduct} from "./RequestHandler/DeleteProduct"
+
 //import {Authenticate} from "./Authenticate"
 
 export class RG_Products extends RequestGroup
@@ -25,8 +27,8 @@ export class RG_Products extends RequestGroup
     RegisterChildMethods()
     {
         console.log("Registering Child Methods in " + this.requestGroupPath)
-        this.RegisterRGChildMethod(HTTPMethodType.post,"",checkAuth,CreateGame);
-        //this.RegisterRGChildMethod(HTTPMethodType.post,"authenticate",Authenticate);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"",checkAuth,CreateProduct);
+        this.RegisterRGChildMethod(HTTPMethodType.delete,':productId',checkAuth,DeleteProduct);
     }
 
     RegisterMiddlewares(){}
