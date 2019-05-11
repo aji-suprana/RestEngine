@@ -46,9 +46,9 @@ export class RG_Products extends RequestGroup
         //quests
         this.RegisterRGChildMethod(HTTPMethodType.post,"quest/:productId",checkAuth,QuestCreate);
         this.RegisterRGChildMethod(HTTPMethodType.post,"quest/enroll/:questId",checkAuth,QuestEnroll);
-        this.RegisterRGChildMethod(HTTPMethodType.get,"quest",QuestGet);
-        this.RegisterRGChildMethod(HTTPMethodType.patch,"quest/:questId",checkAuth,QuestUpdate);
-        this.RegisterRGChildMethod(HTTPMethodType.delete,"quest/:questId",checkAuth,QuestDelete);
+        this.RegisterRGChildMethod(HTTPMethodType.get,"quest", checkAuth, QuestGet);
+        this.RegisterRGChildMethod(HTTPMethodType.patch,"quest",checkAuth,QuestUpdate);
+        this.RegisterRGChildMethod(HTTPMethodType.delete,"quest",checkAuth,QuestDelete);
         
     }
 
