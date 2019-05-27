@@ -13,6 +13,20 @@ import {RG_Products as Products_v0} from "./Events_QuestGod_v0/RG_Products";
 engine.RegisterRequestGroup(new Authentication_v0("auth",0));
 engine.RegisterRequestGroup(new Products_v0("products",0));
 
+engine.app.use((req, res, next) => {
+    console.log('test123123');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers',
+        'Origin,X-Requested-With, Content-Type,Accept,Authorization'
+    );
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    if (req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT,POST,PATCH,DELETE,GET');
+        return res.status(200).json({});
+    }
+    next();
+});
+
 engine.Initialize();
 
 const mongoose = require('mongoose');
@@ -33,8 +47,11 @@ mongoose.connect(
     });
 
 //mongodb+srv://quest_god:<password>@questgod-ftvdm.mongodb.net/test?retryWrites=true
+// import cors = require('cors');
+// import express = require('express');
 
-
+// const app = express();
+// app.use(cors({credentials: true, origin: true}));
 const port = process.env.PORT || 8080;
 const server = http.createServer(engine.app);
 

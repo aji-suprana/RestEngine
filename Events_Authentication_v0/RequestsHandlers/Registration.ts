@@ -57,13 +57,15 @@ export function Registration(req:Request,res:Response,next:NextFunction) {
                 const userModel = new User({
                     _id: new mongoose.Types.ObjectId,
                     email: req.body.email,
-                    password: hash,
-                    userType: req.body.userType
+                    password: hash
                 })
         
                 userModel.save()
-                .then(function(result:Document){
-                    responseHelper.HTTP_OK_DocResponse(result);
+                .then(function(result:any){
+                    responseHelper.HTTP_OK_JSONResponse({
+                        "message": "registration success",
+                        result
+                    });
                 })
                 .catch(function(err:any){
                     responseHelper.HTTP_InternalServerError(err);

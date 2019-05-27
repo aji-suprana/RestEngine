@@ -40,9 +40,9 @@ class RequestGroup{
         this.RegisterChildMethods();
         this.RegisterMiddlewares();
         //this.RegisterRequestHandlers();
-
         //assign requestGroupPath to routers & handlers
         this.RoutesHandler();
+        
     }
 
 

@@ -32,9 +32,9 @@ export class QG_Engine{
 
     Initialize()
     {
+        //Have to be at the end
         this._InitializeModularRequestGroups();
 
-        //Have to be at the end
         this.errorHandler.Initialize(this.app);
     }
 

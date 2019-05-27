@@ -5,7 +5,7 @@ export interface IProduct extends Document{
   owner:mongoose.Types.ObjectId
   name:string,
   productType: string,
-  quest: mongoose.Schema.Types.ObjectId,
+  // quest: mongoose.Schema.Types.ObjectId,
 }
 
 let productSchema = new Schema({
@@ -13,7 +13,7 @@ let productSchema = new Schema({
   owner: {type:mongoose.Types.ObjectId,required:true,index:true},
   name: {type:String,required:true},
   productType:{type:String,required:true},
-  quest: {type:[mongoose.Schema.Types.ObjectId],required :true}
+  // quest: {type:[mongoose.Schema.Types.ObjectId],required :true, index:true},
 
 });
 

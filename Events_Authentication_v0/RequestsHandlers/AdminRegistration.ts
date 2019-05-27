@@ -51,12 +51,15 @@ export function AdminRegistration(req:Request,res:Response,next:NextFunction) {
                             _id: new mongoose.Types.ObjectId,
                             email: req.body.email,
                             password: hash,
-                            userType: "Admin"
+                            userType: req.body.userType
                         })
+
+                        console.log(userModel);
                 
                         userModel.save()
                         .then(function(result:Document){
                             responseHelper.HTTP_OK_DocResponse(result);
+                            console.log(result);
                         })
                         .catch(function(err:any){
                             responseHelper.HTTP_InternalServerError(err);

@@ -7,6 +7,7 @@ import {RequestGroup} from'../Engine/BaseClass/RequestsGroup'
 import {checkAuth} from '../Events_Authentication_v0/Middleware/check-auth'
 //Requests
 import {ProductGet} from "./RequestHandler/ProductGet"
+import {ProductGetById} from "./RequestHandler/ProductGetById"
 import {ProductCreate} from "./RequestHandler/ProductCreate"
 import {ProductDelete} from "./RequestHandler/ProductDelete"
 import {ProductUpdate} from "./RequestHandler/ProductUpdate"
@@ -39,13 +40,15 @@ export class RG_Products extends RequestGroup
         console.log("Registering Child Methods in " + this.requestGroupPath)
         //products
         this.RegisterRGChildMethod(HTTPMethodType.get,"", checkAuth, ProductGet);
+        this.RegisterRGChildMethod(HTTPMethodType.get, "id/:productId", checkAuth, ProductGetById);
         this.RegisterRGChildMethod(HTTPMethodType.post,"",checkAuth,ProductCreate);
         this.RegisterRGChildMethod(HTTPMethodType.delete,'',checkAuth,ProductDelete);
-        this.RegisterRGChildMethod(HTTPMethodType.patch, '', checkAuth, ProductUpdate);
+        this.RegisterRGChildMethod(HTTPMethodType.patch, "", checkAuth, ProductUpdate);
+        this.RegisterRGChildMethod(HTTPMethodType.put,"", checkAuth, ProductUpdate);
 
         //quests
-        this.RegisterRGChildMethod(HTTPMethodType.post,"quest/:productId",checkAuth,QuestCreate);
-        this.RegisterRGChildMethod(HTTPMethodType.post,"quest/enroll/:questId",checkAuth,QuestEnroll);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"quest",checkAuth,QuestCreate);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"quest/enroll",checkAuth,QuestEnroll);
         this.RegisterRGChildMethod(HTTPMethodType.get,"quest", checkAuth, QuestGet);
         this.RegisterRGChildMethod(HTTPMethodType.patch,"quest",checkAuth,QuestUpdate);
         this.RegisterRGChildMethod(HTTPMethodType.delete,"quest",checkAuth,QuestDelete);
