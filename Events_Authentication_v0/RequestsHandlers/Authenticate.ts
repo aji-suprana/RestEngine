@@ -45,6 +45,7 @@ export function Authenticate(req:Request,res:Response,next:NextFunction) {
                 })
                 return responseHelper.HTTP_OK_JSONResponse({
                     success: "Authentication Successfull!",
+                    userId: user[0]._id,
                     token : jwtToken,
                 });
             }else{
