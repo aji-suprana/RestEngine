@@ -17,6 +17,7 @@ import {QuestDelete} from "./RequestHandler/QuestDelete"
 import {QuestEnroll} from "./RequestHandler/QuestEnroll"
 import {QuestGet} from "./RequestHandler/QuestGet"
 import {QuestUpdate} from "./RequestHandler/QuestUpdate"
+import {QuestComplete} from "./RequestHandler/QuestComplete"
 
 
 
@@ -52,7 +53,7 @@ export class RG_Products extends RequestGroup
         this.RegisterRGChildMethod(HTTPMethodType.get,"quest", checkAuth, QuestGet);
         this.RegisterRGChildMethod(HTTPMethodType.patch,"quest",checkAuth,QuestUpdate);
         this.RegisterRGChildMethod(HTTPMethodType.delete,"quest",checkAuth,QuestDelete);
-        
+        this.RegisterRGChildMethod(HTTPMethodType.post,"quest/complete",checkAuth, QuestComplete);
     }
 
     RegisterMiddlewares(){}
