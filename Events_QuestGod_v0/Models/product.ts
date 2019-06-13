@@ -2,7 +2,7 @@ import mongoose,{Schema,Document} from 'mongoose'
 
 export interface IProduct extends Document{
   _id:mongoose.Schema.Types.ObjectId,
-  owner:mongoose.Types.ObjectId
+  owner:mongoose.Types.ObjectId,
   name:string,
   productType: string,
   // quest: mongoose.Schema.Types.ObjectId,
