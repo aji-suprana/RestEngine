@@ -57,7 +57,9 @@ export function Registration(req:Request,res:Response,next:NextFunction) {
                 const userModel = new User({
                     _id: new mongoose.Types.ObjectId,
                     email: req.body.email,
-                    password: hash
+                    password: hash,
+                    userType: req.body.userType,
+                    point: 0
                 })
         
                 userModel.save()
