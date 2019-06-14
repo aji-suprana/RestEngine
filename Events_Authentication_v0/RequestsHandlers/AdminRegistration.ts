@@ -38,7 +38,7 @@ export function AdminRegistration(req:Request,res:Response,next:NextFunction) {
                 if(req.body.password.length < 8)
                 {
                     return responseHelper.HTTP_UnprocessableEntity(
-                        {password : "password length musth be longer than 8 characters"}
+                        {password : "password length must be longer than 8 characters"}
                     );
                 }
         
