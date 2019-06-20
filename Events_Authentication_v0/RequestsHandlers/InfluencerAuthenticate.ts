@@ -14,7 +14,7 @@ import Influencer, { IInfluencer } from '../Models/influencer';
 import * as jwt from 'jsonwebtoken'
 import user from '../Models/user';
 
-export function AdminAuthenticate(req:Request, res:Response, next:NextFunction) {
+export function InfluencerAuthenticate(req:Request, res:Response, next:NextFunction) {
     const responseHelper = new ResponseHelper("Authenticate", res, req);
     const requestValid = IsRequestValid(responseHelper,req,"email","password");
    
@@ -37,6 +37,7 @@ export function AdminAuthenticate(req:Request, res:Response, next:NextFunction) 
                 const jwtToken = jwt.sign({
                     email: influencer[0].email,
                     influencerId: influencer[0]._id,
+                    userType: influencer[0].userType
                 },
                 (String)(process.env.JWT_KEY),
                 {

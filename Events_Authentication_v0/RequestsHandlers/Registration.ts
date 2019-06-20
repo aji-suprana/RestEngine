@@ -12,7 +12,7 @@ import {IsRequestValid} from "../../Engine/ErrorHandler/ErrorHandler"
 export function Registration(req:Request,res:Response,next:NextFunction) {
     const responseHelper = new ResponseHelper("Registration",res,req);
 
-    var requestValid = IsRequestValid(responseHelper,req,"email","password","userType");
+    var requestValid = IsRequestValid(responseHelper,req,"email","password");
    
     if(!requestValid)
         return;
@@ -58,7 +58,7 @@ export function Registration(req:Request,res:Response,next:NextFunction) {
                     _id: new mongoose.Types.ObjectId,
                     email: req.body.email,
                     password: hash,
-                    userType: req.body.userType,
+                    userType: "User",
                     point: 0
                 })
         

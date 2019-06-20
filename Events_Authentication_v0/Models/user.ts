@@ -5,6 +5,7 @@ export interface IUser extends Document{
   email:string,
   password:string,
   userType: string,
+  follow: [mongoose.Schema.Types.ObjectId],
   point: Number
 }
 
@@ -18,6 +19,7 @@ let userSchema = new Schema({
   },
   password:{ type: String, required:true},
   userType: { type: String, required: true},
+  follow: {type: [mongoose.Schema.Types.ObjectId], required:true},
   point: {type: Number, required: true}
 });
 

@@ -12,16 +12,16 @@ import Influencer from '../Models/influencer';
 
 export function InfluencerRegistration( req:Request, res:Response, next:NextFunction ) {
     const responseHelper = new ResponseHelper("InfluencerRegistration", res, req);
-    const requestValid = IsRequestValid(responseHelper, req, "email", "password", "influencerKey");
+    // const requestValid = IsRequestValid(responseHelper, req, "email", "password", "userType");
 
-    if (!requestValid)
-        return;
+    // if (!requestValid)
+    //     return;
 
     responseHelper.JsonRequest_Succeded()
 
-    bcrypt.compare(req.body.influencerKey, process.env.INFLUENCER_KEY, function( err:Error, result:boolean) {
-        var tempBool = CheckIfPasswordIsCorrect(err, result);
-        if (tempBool) {
+    // bcrypt.compare(req.body.password, process.env.INFLUENCER_KEY, function( err:Error, result:boolean) {
+    //     var tempBool = CheckIfPasswordIsCorrect(err, result);
+    //     if (tempBool) {
             Influencer.find({"email":req.body.email})
             .exec()
             .then(function(user:any) {
@@ -66,10 +66,10 @@ export function InfluencerRegistration( req:Request, res:Response, next:NextFunc
             .catch( function(err:any) {
                 responseHelper.HTTP_InternalServerError(err);
             })
-        } else {
-            return responseHelper.HTTP_Unauthorized("Auth key invalid!");
-        }
-    })
+    //     } else {
+    //         return responseHelper.HTTP_Unauthorized("Auth key invalid!");
+    //     }
+    // })
 }
 
 function CheckIfPasswordIsCorrect(err:Error, result:boolean):boolean{

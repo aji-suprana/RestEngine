@@ -15,6 +15,8 @@ import {Request} from "express-serve-static-core";
 import {NextFunction} from "express-serve-static-core";
 
 import {ResponseHelper} from "../Engine/Utilities/ResponseHelper"
+import { InfluencerRegistration } from './RequestsHandlers/InfluencerRegistration';
+import { InfluencerAuthenticate } from './RequestsHandlers/InfluencerAuthenticate';
 
 export class RG_Authentication extends RequestGroup
 {
@@ -36,6 +38,8 @@ export class RG_Authentication extends RequestGroup
         this.RegisterRGChildMethod(HTTPMethodType.post,"registration",Registration);
         this.RegisterRGChildMethod(HTTPMethodType.post,"adminregistration",AdminRegistration);
         this.RegisterRGChildMethod(HTTPMethodType.post,"adminauthentication",AdminAuthenticate);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"influencerauthentication", InfluencerAuthenticate);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"influencerregistration", InfluencerRegistration);
 
     }
     
@@ -46,6 +50,8 @@ export class RG_Authentication extends RequestGroup
         RG_Authentication.getInstance().RegisterRequestHandler('Registration',Registration);
         RG_Authentication.getInstance().RegisterRequestHandler('AdminRegistration',AdminRegistration);
         RG_Authentication.getInstance().RegisterRequestHandler('AdminAuthentication',AdminAuthenticate);
+        RG_Authentication.getInstance().RegisterRequestHandler('InfluencerAuthentication',InfluencerAuthenticate);
+        RG_Authentication.getInstance().RegisterRequestHandler('InfluencerRegistration',InfluencerRegistration);
     }
 
     RequestHandler(req:Request,res:Response,next:NextFunction) : any
