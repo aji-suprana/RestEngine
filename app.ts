@@ -9,12 +9,15 @@ const http = require('http');
 
 import {RG_Authentication as Authentication_v0} from './Events_Authentication_v0/RG_Authentication';
 import {RG_Products as Products_v0} from "./Events_QuestGod_v0/RG_Products";
+import {RG_Users as Users_v0} from "./Events_QuestGod_v0/RG_Users";
+import {RG_Influencers as Influencers_v0} from "./Events_QuestGod_v0/RG_Influencers";
 
 engine.RegisterRequestGroup(new Authentication_v0("auth",0));
 engine.RegisterRequestGroup(new Products_v0("products",0));
+engine.RegisterRequestGroup(new Users_v0("users", 0));
+engine.RegisterRequestGroup(new Influencers_v0("influencers", 0));
 
 engine.app.use((req, res, next) => {
-    console.log('test123123');
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers',
         'Origin,X-Requested-With, Content-Type,Accept,Authorization'

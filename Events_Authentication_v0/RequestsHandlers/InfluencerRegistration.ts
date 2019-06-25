@@ -45,6 +45,7 @@ export function InfluencerRegistration( req:Request, res:Response, next:NextFunc
                     const influencerModel = new Influencer({
                         _id: new mongoose.Types.ObjectId,
                         email: req.body.email,
+                        displayName: req.body.displayName,
                         password: hash,
                         userType: 'Influencer'
                     })
