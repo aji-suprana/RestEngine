@@ -26,7 +26,9 @@ class RequestGroup{
 
     constructor(_requestGroupName:string,_requestGroupVersion:number){
         this.requestGroupName =_requestGroupName;
-        this.requestGroupPath = "/restapi_"+_requestGroupVersion.toString()+"/"+ _requestGroupName;
+        // this.requestGroupPath = "/restapi_"+_requestGroupVersion.toString()+"/"+ _requestGroupName;
+        this.requestGroupPath = "/restapi_"+_requestGroupVersion.toString();
+
         //QG_Engine.RegisterRequestGroup(this);
     }
 

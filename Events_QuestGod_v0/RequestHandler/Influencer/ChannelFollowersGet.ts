@@ -11,7 +11,12 @@ export function ChannelFollowersGet(req:Request, res:Response, next:NextFunction
     const responseHelper = new ResponseHelper("ChannelFollowersGet", res, req);
     responseHelper.JsonRequest_Succeded();
 
-    const channelId = req.body.channelId;
+    /**
+     * Request
+     * @params channelId
+     */
+    
+    const channelId = req.params.channelId;
 
     Influencer_Channel
     .findOne({ _id : channelId })

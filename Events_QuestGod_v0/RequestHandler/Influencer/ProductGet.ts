@@ -10,20 +10,15 @@ export function InfluencerProductGet( req:Request, res:Response, next:NextFuncti
     const responseHelper = new ResponseHelper("GetInfluencerProduct", res, req);
     responseHelper.JsonRequest_Succeded();
 
-
-    // if (userType == "Influencer") {
-        Influencer_Product
-        .find()
-        .exec()
-        .then(function(result:any) {
-            console.log(result);
-            responseHelper.HTTP_OK_JSONResponse({
-                "message": "GetProduct",
-                result,
-            })
+    Influencer_Product
+    .find()
+    .exec()
+    .then(function(result:any) {
+        console.log(result);
+        responseHelper.HTTP_OK_JSONResponse({
+            "message": "GetProduct",
+            result,
         })
-    // } else {
-    //     return responseHelper.HTTP_Unauthorized("Invalid access! influencer account is required");
-    // }
+    })
 }
 

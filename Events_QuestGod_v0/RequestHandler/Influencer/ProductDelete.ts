@@ -13,6 +13,11 @@ export function InfluencerProductDelete(req:Request, res: Response, next: NextFu
     const responseHelper = new ResponseHelper("InfluencerProductDelete", res, req);
     responseHelper.JsonRequest_Succeded();
 
+    /**
+     * Request
+     * @body : "productId"
+     */
+
     const userType = req.body.userData.userType;
 
     if ( userType == "Influencer" ) {

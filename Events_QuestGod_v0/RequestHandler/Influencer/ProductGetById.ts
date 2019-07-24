@@ -10,6 +10,11 @@ import {ResponseHelper} from '../../../Engine/index';
 export function InfluencerProductGetById(req:Request, res:Response, next: NextFunction) {
     const responseHelper = new ResponseHelper("ProductGetById", res, req);
 
+    /**
+     * Request
+     * @params : ":productId"
+     */
+
     Influencer_Product
         .find({_id: req.params.productId})
         .exec()

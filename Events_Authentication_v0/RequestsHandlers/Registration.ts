@@ -17,19 +17,10 @@ export function Registration(req:Request,res:Response,next:NextFunction) {
     if(!requestValid)
         return;
 
-    //if registering as partner
-    // if(req.body.userType === "Partner")
-    // {
-    //     requestValid = IsRequestValid(responseHelper,req,"email","password","userType","partnerKey");
-   
-    //     if(!requestValid)
-    //         return;
-    
-    // }
-
     responseHelper.JsonRequest_Succeded()
 
-    User.find({"email":req.body.email})
+    User
+    .find({"email":req.body.email})
     .exec()
     .then(function(user:any){
         //if mail existed
@@ -43,12 +34,9 @@ export function Registration(req:Request,res:Response,next:NextFunction) {
         if(req.body.password.length < 8)
         {
             return responseHelper.HTTP_UnprocessableEntity(
-                {password : "password length musth be longer than 8 characters"}
+                {password : "password length must be longer than 8 characters"}
             );
         }
-
-
-
         //Encrypting input password
         bcrypt.hash(req.body.password,10,
             (err:any,hash:string)=>{

@@ -13,6 +13,10 @@ export function ChannelCreate(req: Request, res:Response, next: NextFunction) {
     responseHelper.JsonRequest_Succeded();
 
     /**
+     * Request
+     * @body : "channelName" 
+     */
+    /**
      * Note
      * get user type using influencer id
      */

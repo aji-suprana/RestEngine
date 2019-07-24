@@ -20,8 +20,6 @@ import {QuestGetById} from "./RequestHandler/Products/QuestGetById"
 import {QuestUpdate} from "./RequestHandler/Products/QuestUpdate"
 import {QuestComplete} from "./RequestHandler/Products/QuestComplete"
 
-import {UserGet} from './RequestHandler/Users/UserGet';
-
 
 //import {Authenticate} from "./Authenticate"
 

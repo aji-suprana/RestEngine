@@ -12,6 +12,11 @@ export function InfluencerProductCreate(req:Request, res:Response, next:NextFunc
     const responseHelper = new ResponseHelper("InfluencerProductCreate",res,req);
     responseHelper.JsonRequest_Succeded();
 
+    /**
+     * Request
+     * @body : "name", "command", "price"
+     */
+
     const userType = req.body.userData.userType;
 
     if (userType == "Influencer") {
@@ -27,6 +32,7 @@ export function InfluencerProductCreate(req:Request, res:Response, next:NextFunc
 
                 const productModel = new Influencer_Product({
                     _id: new mongoose.Types.ObjectId,
+                    ownerId: req.body.userData.influencerId,
                     name: req.body.name,
                     command: req.body.command,
                     price: req.body.price,

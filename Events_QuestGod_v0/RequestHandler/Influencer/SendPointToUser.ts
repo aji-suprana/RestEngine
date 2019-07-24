@@ -10,6 +10,11 @@ export function SendPointToUser(req:Request, res:Response, next:NextFunction) {
     const responseHelper = new ResponseHelper("SendPointToUser", res, req);
     responseHelper.JsonRequest_Succeded();
 
+    /**
+     * Request:
+     * @body : "userId", "point"
+     */
+
     const userType = req.body.userData.userType;
     const userId = req.body.userId
 
@@ -17,10 +22,6 @@ export function SendPointToUser(req:Request, res:Response, next:NextFunction) {
         User
         .findOne({ _id: userId })
         .then(function(result:any) {
-            console.log('find user');
-            console.log(result);
-            console.log(result.point);
-            console.log(userPoint);
             var userPoint = result.point + parseInt(req.body.point);
 
             //update user point

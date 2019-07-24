@@ -9,6 +9,13 @@ import {ResponseHelper} from '../../../Engine/index';
 
 export function UserFollow(req:Request, res:Response, next:NextFunction) {
     const responseHelper = new ResponseHelper("UserFollow", res, req);
+    responseHelper.JsonRequest_Succeded();
+
+    /**
+     * Request:
+     * @body : "channelId"
+     */
+
     const userType = req.body.userData.userType;
     const channelId = req.body.channelId;
     const userId = req.body.userData.userId;

@@ -11,6 +11,11 @@ export function UserUnfollow(req:Request, res:Response, next:NextFunction) {
     const responseHelper = new ResponseHelper("UserUnfollow", res, req);
     responseHelper.JsonRequest_Succeded();
 
+    /**
+     * Request
+     * @body : ":channelId"
+     */
+
     const channelId = req.body.channelId;
     const userId = req.body.userData.userId;
 

@@ -7,13 +7,17 @@ import {RequestGroup} from'../Engine/BaseClass/RequestsGroup'
 import {checkAuth} from '../Events_Authentication_v0/Middleware/check-auth'
 //Requests
 
+//influencer
+import {InfluencerGet} from "./RequestHandler/Influencer/InfluencerGet";
+import {InfluencerGetById} from "./RequestHandler/Influencer/InfluencerGetById";
+
 //channel
 import {ChannelCreate} from "./RequestHandler/Influencer/ChannelCreate"
 import {ChannelUpdate} from "./RequestHandler/Influencer/ChannelUpdate"
 import {ChannelGet} from "./RequestHandler/Influencer/ChannelGet"
 import {ChannelGetById} from "./RequestHandler/Influencer/ChannelGetById"
 import {ChannelFollowersGet} from "./RequestHandler/Influencer/ChannelFollowersGet"
-import {ChannelGetByName} from "./RequestHandler/Influencer/ChannelGetByName"
+import {ChannelGetByUrl} from "./RequestHandler/Influencer/ChannelGetByUrl"
 
 //product
 import {InfluencerProductCreate} from "./RequestHandler/Influencer/ProductCreate"
@@ -24,6 +28,7 @@ import {InfluencerProductGetById} from './RequestHandler/Influencer/ProductGetBy
 
 //other
 import {SendPointToUser} from './RequestHandler/Influencer/SendPointToUser';
+import {InfluencerConnection} from './RequestHandler/Influencer/Connection';
 
 //import {Authenticate} from "./Authenticate"
 
@@ -43,14 +48,18 @@ export class RG_Influencers extends RequestGroup
     RegisterChildMethods()
     {
         console.log("Registering Child Methods in " + this.requestGroupPath)
+
+        //influencer
+        this.RegisterRGChildMethod(HTTPMethodType.get, "influencers", checkAuth, InfluencerGet);
+        this.RegisterRGChildMethod(HTTPMethodType.get, "influencers/id/:influencerId", checkAuth, InfluencerGetById);
         
         //channel
         this.RegisterRGChildMethod(HTTPMethodType.post, "influencers/channel", checkAuth, ChannelCreate);
         this.RegisterRGChildMethod(HTTPMethodType.patch, "influencers/channel", checkAuth, ChannelUpdate);
         this.RegisterRGChildMethod(HTTPMethodType.get, "influencers/channel", checkAuth, ChannelGet);
         this.RegisterRGChildMethod(HTTPMethodType.get, "influencers/channel/id/:channelId", checkAuth, ChannelGetById);
-        this.RegisterRGChildMethod(HTTPMethodType.get, "influencers/channel/followers", checkAuth, ChannelFollowersGet);
-        this.RegisterRGChildMethod(HTTPMethodType.get, "influencers/channel/name/:channelName", checkAuth, ChannelGetByName);
+        this.RegisterRGChildMethod(HTTPMethodType.get, "influencers/channel/followers/:channelId", checkAuth, ChannelFollowersGet);
+        this.RegisterRGChildMethod(HTTPMethodType.get, "influencers/channel/url/:channelUrl", checkAuth, ChannelGetByUrl);
 
 
         //product
@@ -62,6 +71,7 @@ export class RG_Influencers extends RequestGroup
 
         //other
         this.RegisterRGChildMethod(HTTPMethodType.patch, "influencers/sendpoint", checkAuth, SendPointToUser);
+        this.RegisterRGChildMethod(HTTPMethodType.patch, "influencers/connection", checkAuth, InfluencerConnection);
 
     }
 

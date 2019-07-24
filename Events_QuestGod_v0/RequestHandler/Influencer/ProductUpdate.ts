@@ -10,6 +10,11 @@ export function InfluencerProductUpdate(req:Request, res:Response, next:NextFunc
     const responseHelper = new ResponseHelper("InfluencerProductDelete", res, req);
     responseHelper.JsonRequest_Succeded();
 
+    /**
+     * Request
+     * @body : "name/command/price"
+     */
+
     const userType = req.body.userData.userType;
 
     if (userType == "Influencer") {

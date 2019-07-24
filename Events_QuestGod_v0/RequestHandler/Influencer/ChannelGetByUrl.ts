@@ -10,12 +10,15 @@ import {ResponseHelper} from '../../../Engine/index';
 
 
 
-export function ChannelGetByName(req:Request, res:Response, next:NextFunction) {
-    const responseHelper = new ResponseHelper("ChannelGetByName", res,req);
+export function ChannelGetByUrl(req:Request, res:Response, next:NextFunction) {
+    const responseHelper = new ResponseHelper("ChannelGetByUrl", res,req);
     responseHelper.JsonRequest_Succeded();
 
-    const channelNameToLowerCase = req.params.channelName.toLowerCase();
-    const channelUrl = channelNameToLowerCase.replace(/\s/g, "-");
+    /**
+     * Request
+     * @params : "channelUrl"
+     */
+    const channelUrl = req.params.channelUrl;
 
     Influencer_Channel
     .findOne({ channelUrl: channelUrl })

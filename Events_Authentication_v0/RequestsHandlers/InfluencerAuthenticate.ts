@@ -37,14 +37,18 @@ export function InfluencerAuthenticate(req:Request, res:Response, next:NextFunct
                 const jwtToken = jwt.sign({
                     email: influencer[0].email,
                     influencerId: influencer[0]._id,
+                    influencerDisplayName : influencer[0].displayName,
                     userType: influencer[0].userType
                 },
                 (String)(process.env.JWT_KEY),
                 {
                     expiresIn: "100d"
                 })
+                
                 return responseHelper.HTTP_OK_JSONResponse({
                     success: "Authentication Successfull!",
+                    influencerId: influencer[0]._id,
+                    influencerDisplayName: influencer[0].displayName,
                     token : jwtToken
                 });
             }else{
@@ -59,7 +63,7 @@ export function InfluencerAuthenticate(req:Request, res:Response, next:NextFunct
 }
 
 function UserFound(influencer:IInfluencer[]) : boolean{
-    if(user.length >= 1) {
+    if(influencer.length >= 1) {
         return true;
     } else {
         return false;

@@ -14,8 +14,7 @@ export function ProductCreate(req:Request,res:Response,next:NextFunction) {
     const responseHelper = new ResponseHelper("CreateProduct",res,req);
     responseHelper.JsonRequest_Succeded();
 
-    // const userType = req.body;
-    // console.log(userType);
+    
     const userType = 'Partner';
 
     if(userType == "Partner" || userType == "Admin")

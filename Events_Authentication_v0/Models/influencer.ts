@@ -4,6 +4,8 @@ export interface IInfluencer extends Document {
     _id: mongoose.Schema.Types.ObjectId,
     email: string,
     displayName: string,
+    ipAddress: string,
+    port: number,
     password: string,
     userType: string
 }
@@ -17,6 +19,8 @@ let influencerSchema = new Schema({
         match:/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
     },
     displayName: {type:String, required:true},
+    ipAddress: {type:String, default: ''},
+    port: {type:Number, default: ''},
     password: { type: String, required: true},
     userType: {type: String, required:true}
 });

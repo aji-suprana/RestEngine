@@ -14,6 +14,8 @@ import {UserFollow} from './RequestHandler/Users/UserFollow'
 import {UserSpentPoint} from './RequestHandler/Users/UserSpentPoint'
 import {UserUnfollow} from './RequestHandler/Users/UserUnfollow'
 
+// import {Test} from './RequestHandler/Users/Test';
+
 //import {Authenticate} from "./Authenticate"
 
 export class RG_Users extends RequestGroup
@@ -42,6 +44,9 @@ export class RG_Users extends RequestGroup
         this.RegisterRGChildMethod(HTTPMethodType.post, "users/follow", checkAuth, UserFollow);
         this.RegisterRGChildMethod(HTTPMethodType.post, "users/unfollow", checkAuth, UserUnfollow);
         this.RegisterRGChildMethod(HTTPMethodType.patch, "users/spentpoint", checkAuth, UserSpentPoint);
+        this.RegisterRGChildMethod(HTTPMethodType.put, "users/spentpoint", checkAuth, UserSpentPoint);
+
+        // this.RegisterRGChildMethod(HTTPMethodType.get, "test", Test);
     }
 
     RegisterMiddlewares(){}

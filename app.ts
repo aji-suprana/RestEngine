@@ -11,11 +11,13 @@ import {RG_Authentication as Authentication_v0} from './Events_Authentication_v0
 import {RG_Products as Products_v0} from "./Events_QuestGod_v0/RG_Products";
 import {RG_Users as Users_v0} from "./Events_QuestGod_v0/RG_Users";
 import {RG_Influencers as Influencers_v0} from "./Events_QuestGod_v0/RG_Influencers";
+import {RG_Test as Tests_v0} from "./Events_QuestGod_v0/RG_Test";
 
 engine.RegisterRequestGroup(new Authentication_v0("auth",0));
 engine.RegisterRequestGroup(new Products_v0("products",0));
 engine.RegisterRequestGroup(new Users_v0("users", 0));
 engine.RegisterRequestGroup(new Influencers_v0("influencers", 0));
+engine.RegisterRequestGroup(new Tests_v0("test", 0));
 
 engine.app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -49,12 +51,6 @@ mongoose.connect(
         process.exit(1);
     });
 
-//mongodb+srv://quest_god:<password>@questgod-ftvdm.mongodb.net/test?retryWrites=true
-// import cors = require('cors');
-// import express = require('express');
-
-// const app = express();
-// app.use(cors({credentials: true, origin: true}));
 const port = process.env.PORT || 8080;
 const server = http.createServer(engine.app);
 

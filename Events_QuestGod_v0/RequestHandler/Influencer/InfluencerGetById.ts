@@ -1,26 +1,26 @@
 import mongoose, {Document} from 'mongoose';
-
 import {Request} from 'express-serve-static-core';
 import {Response} from 'express-serve-static-core';
 import {NextFunction} from 'express-serve-static-core';
 
-import User, {IUser} from '../../../Events_Authentication_v0/Models/user';
+import Influencer, {IInfluencer} from '../../../Events_Authentication_v0/Models/influencer';
 import {ResponseHelper} from '../../../Engine/index';
 
-export function UserGetById(req:Request, res:Response, next: NextFunction) {
-    const responseHelper = new ResponseHelper("UserGetById", res, req);
-
+export function InfluencerGetById(req:Request, res:Response, next:NextFunction) {
+    const responseHelper = new ResponseHelper("InfluencerGetById", res, req);
     responseHelper.JsonRequest_Succeded();
 
     /**
-     * Request:
-     * @params : ":userId"
+     * Request
+     * @params : ":influencerId"
      */
 
-    User
-    .findOne({ _id: req.params.userId })
+    const InfluencerId = req.params.influencerId;
+
+    Influencer
+    .findOne({ _id: InfluencerId })
     .exec()
-    .then( function(result:any) {
+    .then(function(result:any) {
         console.log(result);
         return responseHelper.HTTP_OK_DocResponse(result);
     })

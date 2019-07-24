@@ -9,9 +9,12 @@ import {ResponseHelper} from '../../../Engine/index';
 export function ChannelUpdate( req: Request, res: Response, next: NextFunction) {
     const responseHelper = new ResponseHelper("ChannelUpdate", res, req);
 
+    /**
+     * Request
+     * @body : "channelName"
+     */
+
     const userType = req.body.userData.userType;
-    // const userId = req.body.userData.userId;
-    // const channelId = req.body.channelId;
     const influencerId = req.body.userData.influencerId;
 
     if (userType == "Influencer") {

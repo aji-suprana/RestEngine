@@ -8,10 +8,14 @@ import {ResponseHelper} from "../../../Engine/index";
 export function UserUpdate(req:Request, res:Response, next:NextFunction) {
     const responseHelper = new ResponseHelper("UserUpdate", res, req);
     responseHelper.JsonRequest_Succeded();
+
+    /**
+     * Request
+     * @body : "userId", "point"
+     */
     
     const id = req.body.userId
     const userType = req.body.userData.userType;
-    console.log(req.body.userData);
 
     if (userType != "User") {
         User.updateOne({_id: id}, {$set:req.body})

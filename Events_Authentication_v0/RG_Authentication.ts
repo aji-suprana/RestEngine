@@ -34,12 +34,12 @@ export class RG_Authentication extends RequestGroup
     RegisterChildMethods()
     {
         console.log("REGISTERING CHILD METHOD IN " + this.requestGroupPath)
-        this.RegisterRGChildMethod(HTTPMethodType.post,"authentication",Authenticate);
-        this.RegisterRGChildMethod(HTTPMethodType.post,"registration",Registration);
-        this.RegisterRGChildMethod(HTTPMethodType.post,"adminregistration",AdminRegistration);
-        this.RegisterRGChildMethod(HTTPMethodType.post,"adminauthentication",AdminAuthenticate);
-        this.RegisterRGChildMethod(HTTPMethodType.post,"influencerauthentication", InfluencerAuthenticate);
-        this.RegisterRGChildMethod(HTTPMethodType.post,"influencerregistration", InfluencerRegistration);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"auth/authentication",Authenticate);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"auth/registration",Registration);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"auth/adminregistration",AdminRegistration);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"auth/adminauthentication",AdminAuthenticate);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"auth/influencerauthentication", InfluencerAuthenticate);
+        this.RegisterRGChildMethod(HTTPMethodType.post,"auth/influencerregistration", InfluencerRegistration);
 
     }
     

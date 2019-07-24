@@ -11,6 +11,11 @@ export function ChannelGetById(req:Request, res:Response, next:NextFunction) {
     const responseHelper = new ResponseHelper("ChannelGetById", res, req);
     responseHelper.JsonRequest_Succeded();
 
+    /**
+     * Request
+     * @params : ":channelId"
+     */
+
     const channelId = req.params.channelId
 
     Influencer_Channel
