@@ -9,6 +9,7 @@ import {NextFunction} from "express-serve-static-core";
 import {ResponseHelper} from "../../../Engine/index"
 import Product,{IProduct} from '../../Models/product';
 import User_Product, {IUser_Product} from '../../Models/user-product';
+import Transaction from '../../Models/transaction';
 
 export function ProductDelete(req:Request,res:Response,next:NextFunction) {
     const responseHelper = new ResponseHelper("DeleteProduct",res,req);

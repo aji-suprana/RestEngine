@@ -26,6 +26,10 @@ import {InfluencerProductUpdate} from "./RequestHandler/Influencer/ProductUpdate
 import {InfluencerProductGet} from "./RequestHandler/Influencer/ProductGet"
 import {InfluencerProductGetById} from './RequestHandler/Influencer/ProductGetById'
 
+//transaction
+import {GetCommand} from './RequestHandler/Influencer/GetCommand';
+import { TransactionUpdate} from './RequestHandler/Influencer/TransactionUpdate';
+
 //other
 import {SendPointToUser} from './RequestHandler/Influencer/SendPointToUser';
 import {InfluencerConnection} from './RequestHandler/Influencer/Connection';
@@ -68,10 +72,12 @@ export class RG_Influencers extends RequestGroup
         this.RegisterRGChildMethod(HTTPMethodType.post, "influencers/channel/product", checkAuth, InfluencerProductCreate);
         this.RegisterRGChildMethod(HTTPMethodType.delete, "influencers/channel/product", checkAuth, InfluencerProductDelete);
         this.RegisterRGChildMethod(HTTPMethodType.patch, "influencers/channel/product", checkAuth, InfluencerProductUpdate);
+        this.RegisterRGChildMethod(HTTPMethodType.get, "influencers/channel/product/command/:transactionId", checkAuth, GetCommand);
 
         //other
         this.RegisterRGChildMethod(HTTPMethodType.patch, "influencers/sendpoint", checkAuth, SendPointToUser);
         this.RegisterRGChildMethod(HTTPMethodType.patch, "influencers/connection", checkAuth, InfluencerConnection);
+        this.RegisterRGChildMethod(HTTPMethodType.patch, "influencers/transaction", checkAuth, TransactionUpdate);
 
     }
 

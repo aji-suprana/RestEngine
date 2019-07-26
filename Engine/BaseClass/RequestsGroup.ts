@@ -114,6 +114,7 @@ class RequestGroup{
         var methodTypeName = HTTPMethodType[MethodType];
         switch(MethodType)
         {
+
             case HTTPMethodType.copy: router.copy(path,requestCB); this.DebugRegisteredHTTPMethod(methodTypeName,path);break;
             case HTTPMethodType.delete: router.delete(path,requestCB);this.DebugRegisteredHTTPMethod(methodTypeName,path); break;
             case HTTPMethodType.get: router.get(path,requestCB); this.DebugRegisteredHTTPMethod(methodTypeName,path);break;

@@ -14,6 +14,11 @@ import {TestUpdate} from './RequestHandler/Test/TestUpdate';
 import {TestDelete} from './RequestHandler/Test/TestDelete';
 
 import {TestAuth} from './RequestHandler/Test/TestAuth';
+import {TestConnection} from './RequestHandler/Test/TestConnection';
+
+import {TestUserSpentPoint} from './RequestHandler/Test/TestUserSpentPoint';
+import {TestDeletePacket} from './RequestHandler/Test/TestDeletePacket';
+import {TestAsync} from './RequestHandler/Test/TestAsync';
 
 // import {Multer} from './RequestHandler/Test/Multer';
 
@@ -21,6 +26,8 @@ import {TestAuth} from './RequestHandler/Test/TestAuth';
 
 // import multer from 'multer';
 // const upload = multer({dest: '/uploads/'})
+
+
 
 export class RG_Test extends RequestGroup
 {
@@ -46,6 +53,11 @@ export class RG_Test extends RequestGroup
         this.RegisterRGChildMethod(HTTPMethodType.delete, "test", TestDelete);
         this.RegisterRGChildMethod(HTTPMethodType.patch, "test", TestUpdate);
         this.RegisterRGChildMethod(HTTPMethodType.post, "test/auth", checkAuth, TestAuth);
+        this.RegisterRGChildMethod(HTTPMethodType.post, "test/connection", TestConnection);
+        this.RegisterRGChildMethod(HTTPMethodType.patch, "test/userspentpoint", TestUserSpentPoint);
+        this.RegisterRGChildMethod(HTTPMethodType.delete, "test/deletepacket", TestDeletePacket);
+
+        this.RegisterRGChildMethod(HTTPMethodType.get, "test/async/:id",TestAsync);
         // this.RegisterRGChildMethod(HTTPMethodType.post, "test/multer", checkAuth, Multer, upload.single('productImage'));
        
     }
