@@ -36,13 +36,14 @@ engine.Initialize();
 
 const mongoose = require('mongoose');
 
+
 console.log("");
 console.log("process.env.PORT : " + process.env.PORT);
 console.log("process.env.DATABASEURI : " + process.env.DATABASEURI);
 console.log("");
 
 mongoose.connect(
-    process.env.DATABASEURI,
+    "mongodb://qguser:KyqYx23UNX9sE6ZP9SA4@voxel.software:27017/questgod",
     {
        useNewUrlParser: true
     }
